@@ -4,7 +4,6 @@ import "./widgetList.css";
 import Block from "@/app/Block";
 import AddWidgetDialog from "../AddWidgetDialog/AddWidgetDialog";
 import Compiler from "@/app/utils/Compiler";
-import config from "@/app/config";
 import { TreeView } from "@mui/x-tree-view/TreeView";
 import { TreeItem } from "@mui/x-tree-view/TreeItem";
 import { MdOutlineExpandMore } from "react-icons/md";
@@ -139,29 +138,6 @@ export function WidgetsList({
           widgets={widgets}
         />
       )}
-      <button
-        className="bg-green-700 p-2 border-1 absolute top-4 right-20 rounded"
-        onClick={async () => {
-          let compiled = Compiler.compileBlock(baseBlock);
-          await fetch(config.host + "/update", {
-            method: "post",
-            headers: { "Content-type": "application/json" },
-            body: JSON.stringify({
-              newCode: compiled,
-              withAI: true,
-            }),
-          });
-
-          fetch(config.host + ":8080/render").then((_) => {
-            var iframe = document.getElementById(
-              "flutterview"
-            ) as HTMLIFrameElement;
-            iframe.src = iframe.src;
-          });
-        }}
-      >
-        Compile with AI
-      </button>
       <TreeView
         expanded={expandedNodes}
         defaultCollapseIcon={<MdOutlineExpandMore />}

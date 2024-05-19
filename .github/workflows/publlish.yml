@@ -31,6 +31,8 @@ jobs:
 
       - name: Build with Next.js 🏗️
         run: npx next build
+        env:
+            REACT_APP_INSTAGRAM_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_OPENAI_API_KEY }}
 
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3
