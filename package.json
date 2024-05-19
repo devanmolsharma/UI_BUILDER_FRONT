@@ -2,7 +2,7 @@
   "name": "flutter_builder",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://devanmolsharma.github.io/UI_BUILDER_FRONT/",
+  "homepage": ".",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
