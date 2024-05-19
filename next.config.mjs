@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output:"export"
+    output:"export",
+    basePath: '/UI_BUILDER_FRONT'
 };
 
 export default nextConfig;
