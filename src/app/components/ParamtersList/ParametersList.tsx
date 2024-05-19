@@ -233,8 +233,8 @@ export function ParametersList({ selectedBlock, onExit ,onPropChange}: Paramters
           defaultCollapseIcon={<RiSettings2Fill />}
           defaultExpandIcon={<RiSettings4Line />}
         >
-          {props[typeMap[propCategory]].map((E: any) => (
-            <div>{E}</div>
+          {props[typeMap[propCategory]].map((E: any,i:number) => (
+            <div key={i}>{E}</div>
           ))}
         </TreeView>
       </div>

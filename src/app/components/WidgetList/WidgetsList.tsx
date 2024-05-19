@@ -27,14 +27,18 @@ export function WidgetsList({
   baseBlock,
   setBaseBlock
 }: WidgetListProps): JSX.Element {
-  if (widgets.length <= 0) {
-    return <></>;
-  }
   let [selectedBlock, setSelectedBlock] = useState<Block>();
   let [propname, setPropName] = useState("");
   let [showDialog, setShowDialog] = useState(true);
   const [expandedNodes, setExpandedNodes] = useState<string[]>([]);
-
+  
+    useEffect(() => {
+      onBlocksChange(baseBlock);
+    }, [baseBlock]);
+  
+  if (widgets.length <= 0) {
+    return <></>;
+  }
   function toggleExpanded(ids: string[]) {
     setExpandedNodes(ids);
   }
@@ -43,10 +47,6 @@ export function WidgetsList({
     let code = Compiler.compileBlock(block);
     navigator.clipboard.writeText(code);
   }
-
-  useEffect(() => {
-    onBlocksChange(baseBlock);
-  }, [baseBlock]);
 
   function parseBlock(block: Block, parent: string = "") {
     let children = block.children;
@@ -76,6 +76,7 @@ export function WidgetsList({
       >
         {widgetListParams?.map((param, i) => (
           <TreeItem
+          key={i}
             className="text-white"
             nodeId={parent + block.name + param.name}
             label={param.name}
@@ -101,8 +102,9 @@ export function WidgetsList({
               !widgetListParams?.map((param) => param.name).includes(child.name)
           )
           .map((child) => parseBlock(child))}
-        {block.widgetParams(true)?.map((param) => (
+        {block.widgetParams(true)?.map((param,i) => (
           <TreeItem
+          key={i}
             nodeId={parent + block.name + "_" + param.name}
             label={param.name + (param.required ? "*" : "")}
             icon={<IoMdAddCircleOutline />}
