@@ -143,7 +143,7 @@ export function WidgetsList({
         className="bg-green-700 p-2 border-1 absolute top-4 right-20 rounded"
         onClick={async () => {
           let compiled = Compiler.compileBlock(baseBlock);
-          await fetch(config.host + ":8080/update", {
+          await fetch(config.host + "/update", {
             method: "post",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify({

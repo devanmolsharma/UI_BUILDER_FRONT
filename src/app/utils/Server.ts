@@ -6,7 +6,7 @@ export class Server {
     constructor(public serverUrl: string,) { };
 
     async uploadWidgets(block:Block): Promise<void> {
-        await fetch(this.serverUrl + ":8080/update", {
+        await fetch(this.serverUrl + "/update", {
             method: "post",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify({
@@ -16,11 +16,11 @@ export class Server {
     }
 
     async renderChanges(): Promise<void> {
-        await fetch(this.serverUrl + ":8080/render/");
+        await fetch(this.serverUrl + "/render/");
     }
 
     downloadCompiledCode(type: 'web' | 'apk' | 'aab' | 'linux'): void {
-        location.href = this.serverUrl + ":8080/build/" + type;
+        location.href = this.serverUrl + "/build/" + type;
     }
     
 }

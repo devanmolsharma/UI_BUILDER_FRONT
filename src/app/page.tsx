@@ -12,7 +12,7 @@ export default function Home() {
   let widgets: Widget[] = json as any;
   const [selectedBlock, setSelectedBlock] = useState<Block>();
   const [iframeKey, setIframeKey] = useState(0);
-  const server = new Server("http://localhost");
+  const server = new Server(config.host);
   let [baseBlock, setBaseBlock] = useState(
     new Block(widgets.find((v) => v.name == "Scaffold")!, "Scaffold")
   );
@@ -43,7 +43,7 @@ export default function Home() {
             key={iframeKey}
             className="w-full h-full rounded"
             id="flutterview"
-            src={`${config.host}:9998/`}
+            src={`${config.host}`}
           ></iframe>
         </div>
         {selectedBlock && (
