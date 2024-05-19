@@ -38,8 +38,19 @@ export default function Home() {
         className="bg-green-700 p-2 border-1 absolute top-4 right-20 rounded"
         onClick={(e) => {
           const btn = e.target as HTMLButtonElement;
-          let regex = /\{\/\*[A-Za-z]+ [A-Za-z]+\*\/\}/i;
-          if (!regex.test(code)) {
+          const regex = /\/\*[^]*?\*\//im;
+          const match = code.match(regex);
+          if (match) {
+            const commentContent = match[0].slice(2, -2).trim();
+            if (commentContent) {
+              console.log("The comment is not null:", commentContent);
+            } else {
+              alert(
+                'AI Bulder is useful ony when an Event is defined for a widget. For Example, Try adding a TextButton and navigate to "Events" in property bar'
+              );
+              return;
+            }
+          } else {
             alert(
               'AI Bulder is useful ony when an Event is defined for a widget. For Example, Try adding a TextButton and navigate to "Events" in property bar'
             );

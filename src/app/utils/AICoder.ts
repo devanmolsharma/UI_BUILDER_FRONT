@@ -13,7 +13,7 @@ class AICoder {
         messages: [
           {
             "role": "system",
-            "content": " User is non-coder so you have to write all the code\n\nadd variables as required\n\nreplace comments embedded within the function bodies of Flutter widgets with setstate methods as required.\n\nmake the desired change\n\n Write code necessary to fulfil demands of comments\nadd extra code if necessary to make the app working\n return code in raw format, no expaination needed "
+            "content": " User is non-coder so you have to write all the code\n\nadd variables as required\n\nreplace comments embedded within the function bodies of Flutter widgets with setstate methods as required.\n\nmake the desired change\n\n Write code necessary to fulfil demands of comments\nadd extra code if necessary to make the app working\n return full code at once"
           },
           {
             "role": "user",
@@ -30,7 +30,8 @@ class AICoder {
 
     const res = await fetch('https://api.openai.com/v1/chat/completions', requestOptions);
     const json = await res.json()
-    const code = json.choices[0].message.content as string;
+    let code = json.choices[0].message.content as string;
+    code = code.replaceAll('```dart','```')
     return code.includes('```') ? code.split('```')[1] : code
   }
 }

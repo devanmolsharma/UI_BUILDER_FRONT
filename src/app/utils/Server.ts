@@ -7,10 +7,10 @@ export class Server {
     constructor(public serverUrl: string,) { };
 
     async uploadWidgets(block: Block, useAI?: boolean): Promise<Record<string, string>> {
-        const compiledCode = Compiler.compileBlock(block);
+        const compiledCode = pre + Compiler.compileBlock(block) + post;
         if (!useAI) {
             return {
-                code: pre + compiledCode + post
+                code: compiledCode
             }
         }
         const res = await AICoder.processCode(compiledCode)
