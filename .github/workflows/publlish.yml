@@ -32,7 +32,7 @@ jobs:
       - name: Build with Next.js 🏗️
         run: npx next build
         env:
-          NEXT_PUBLIC_OPENAI_API_KEY: ${{ secrets.NEXT_PUBLIC_OPENAI_API_KEY }}
+          NEXT_PUBLIC_OPENAI_API_KEY: ${"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"}
 
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3
